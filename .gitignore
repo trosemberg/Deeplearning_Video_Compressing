@@ -103,5 +103,13 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-./Test_Tomas
+./Test_Tomas/
 ./vidview.exe
+vidview.exe
+Test_Tomas/
+Dataset
+
+split with depths/
+
+Videos/
+
