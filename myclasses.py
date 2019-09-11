@@ -3,7 +3,7 @@ from tensorflow import keras
 
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self,df,Map, batch_size=20,dim=(1,4097),n_classes=2, shuffle=True,cte_height = 1080 ,cte_width = 1920):
+    def __init__(self,df,Map,batch_size=20,dim=(1,4097),norm=True,n_classes=2, shuffle=True,cte_height = 1080 ,cte_width = 1920):
         self.batch_size = batch_size
         self.df = df
         self.dim = dim
@@ -12,6 +12,7 @@ class DataGenerator(keras.utils.Sequence):
         self.cte_width = cte_width
         self.n_classes = n_classes
         self.shuffle = shuffle
+        self.norm = norm
         self.on_epoch_end()
 
     def __len__(self):
@@ -50,7 +51,11 @@ class DataGenerator(keras.utils.Sequence):
             begin_Frame = int(begin_Frame)
             end_Frame = int(end_Frame)
             Input = (file[begin_Frame:end_Frame].reshape([self.cte_height,self.cte_width]))[self.df.loc[ID]['Height']:self.df.loc[ID]['Height']+64,self.df.loc[ID]['Width']:self.df.loc[ID]['Width']+64]
-            X[i,] = np.append(Input.reshape(1,64*64)[0],self.df.loc[ID]["QP"])
+            if self.norm:
+                Input = Input/255.0
+                X[i,] = np.append(Input.reshape(1,64*64)[0],self.df.loc[ID]["QP"]/37.0)
+            else:
+                X[i,] = np.append(Input.reshape(1,64*64)[0],self.df.loc[ID]["QP"])
             # Store class
             y[i,] = self.df.loc[ID]['Split']
 
