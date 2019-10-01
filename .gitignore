@@ -108,6 +108,7 @@ venv.bak/
 vidview.exe
 Test_Tomas/
 Dataset
+/TapEncoder/bypassdecision*
 
 split with depths/
 
@@ -122,5 +123,7 @@ Depth_1
 Depth_2
 
 .vscode/
+
+
 
 
