@@ -51,7 +51,7 @@ def geraRandomSplitForCU(pelY, pelX, width, height):
         if (split3_D1 == '1'):
             split12_D2  = getRandomSplitForCU(pelY + 32, pelX + 32, 2, width, height)
             split13_D2  = getRandomSplitForCU(pelY + 32, pelX + 48, 2, width, height)
-            split14_D2  = getRandomSplitForCU(pelY + 48, pelX  +32, 2, width, height)
+            split14_D2  = getRandomSplitForCU(pelY + 48, pelX + 32, 2, width, height)
             split15_D2  = getRandomSplitForCU(pelY + 48, pelX + 48, 2, width, height)
 
             string = string + ' ' + split12_D2 + ' ' + split13_D2 + ' ' + split14_D2 + ' ' + split15_D2

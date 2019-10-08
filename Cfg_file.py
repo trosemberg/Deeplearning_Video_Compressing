@@ -1,4 +1,5 @@
 import re
+   
 class cfg:
     def __init__(self):
         self.config = """
