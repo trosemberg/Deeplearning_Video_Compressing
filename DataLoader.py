@@ -63,15 +63,14 @@ class DataGenerator(keras.utils.Sequence):
             # Store class
             y[i,] = self.df.loc[ID]['Split']
 
-        return X, keras.utils.to_categorical(y, num_classes=self.n_classes)
+        return X.squeeze(), keras.utils.to_categorical(y, num_classes=self.n_classes)
     
     
 class Predictions_Input():
-    def __init__(self):
-        self.file = open("./TapEncoder/encoder_randomaccess_main.cfg","r")
+    def __init__(self,folder):
+        self.file = open("./{}/encoder_randomaccess_main.cfg".format(folder),"r")
         strings = self.file.readlines()
-        strings[2]
-        resultados = re.search(r"(\/.*\/[a-zA-Z_]*(\d+)x(\d+).*yuv)",strings[2])
+        resultados = re.search(r"(\/[a-zA-Z_]*(\d+)x(\d+).*yuv)",strings[2])
         self.video  = resultados.group(1)
         self.width = int(resultados.group(2))
         self.height = int(resultados.group(3))
