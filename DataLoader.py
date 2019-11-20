@@ -68,9 +68,10 @@ class DataGenerator(keras.utils.Sequence):
     
 class Predictions_Input():
     def __init__(self,folder):
-        self.file = open("./{}/encoder_randomaccess_main.cfg".format(folder),"r")
-        strings = self.file.readlines()
-        resultados = re.search(r"(\/[a-zA-Z_]*(\d+)x(\d+).*yuv)",strings[2])
+        file = open("./{}/encoder_randomaccess_main.cfg".format(folder),"r")
+        strings = file.readlines()
+        file.close()
+        resultados = re.search(r"(\/[a-zA-Z1-9]*_(\d+)x(\d+).*yuv)",strings[2])
         self.video  = resultados.group(1)
         self.width = int(resultados.group(2))
         self.height = int(resultados.group(3))
